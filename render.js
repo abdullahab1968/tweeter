@@ -21,7 +21,7 @@ const Renderer = function (posts) {
     }
     postElenemt.append(
       $(
-        "<input type='text' placeholder='Got something to say' class='comment-input'><button class='comment-button'>Comment</button><br>"
+        "<div class='add-comment'><input type='text' placeholder='Got something to say' class='comment-input'><button class='comment-button'>Comment</button><br></div>"
       )
     );
     postElenemt.append($("<button class='delete-post'>Delete Post</button>"));
