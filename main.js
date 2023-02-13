@@ -33,3 +33,5 @@ POSTS_ELEMENT.on("click", ".delete-comment", function(){
     render.renderPosts()
 })
 
+
+
