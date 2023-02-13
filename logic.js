@@ -1,34 +1,34 @@
 const Tweeter = function () {
   const _posts = []
-  let postIdCounter = 2
-  let commentIdCounter = 6
+  let postIdCounter = 0
+  let commentIdCounter = 0
 
   const getPosts = function () {
     return _posts
   }
 
   const addPost = function (text) {
-    const post = _buildPostObject(text)
+    const post = buildPostObject(text)
     _posts.push(post)
     postIdCounter += 1
   }
 
   const removePost = function (postID) {
-    const postLocation = _findMypost(postID)
+    const postLocation = findPost(postID)
     _posts.splice(postLocation, 1)
     postIdCounter -= 1
 
   }
   const addComment = function (text, postID) {
-    const newComment =_buildComment(postID, text)
-    const postLocation = _findMypost(postID)
+    const newComment = buildCommentObject(postID, text)
+    const postLocation = findPost(postID)
     _posts[postLocation].comments.push(newComment)
     commentIdCounter += 1
   }
   const removeComment = function (postID, commentID) {
-    const postLocation = _findMypost(postID)
+    const postLocation = findPost(postID)
     const comments = _posts[postLocation].comments
-    const commentLocation = _findMyComment(comments, commentID)
+    const commentLocation = findComment(comments, commentID)
     comments.splice(commentLocation, 1)
     commentIdCounter -= 1
 
@@ -36,7 +36,7 @@ const Tweeter = function () {
   }
 
   
-  function _buildPostObject (text) {
+  function buildPostObject (text) {
     const post = {}
     post['text'] = text
     const idNumber = postIdCounter + 1
@@ -45,14 +45,14 @@ const Tweeter = function () {
 
     return post
   }
-  function _findMypost (postID) {
+  function findPost (postID) {
     for (let index = 0; index < _posts.length; index++){
         if (postID === _posts[index].id) {
             return index
         }
     }
   }
-  function _buildComment(postID, text) {
+  function buildCommentObject(postID, text) {
     const comment = {}
     const commentNumber = commentIdCounter + 1
     comment.id = 'c' + commentNumber
@@ -60,7 +60,7 @@ const Tweeter = function () {
     return comment
 
   }
-  function _findMyComment (comments, commentID) {
+  function findComment (comments, commentID) {
     for (let index = 0; index < comments.length; index++){
         if (commentID === comments[index].id) {
             return index

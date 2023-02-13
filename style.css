@@ -18,7 +18,7 @@ body{
     color: #3498db;
 }
 
-#input{
+#post-input{
     grid-area: i;
     padding: 10px;
     font-size: 1.5vw;
@@ -28,7 +28,7 @@ body{
     grid-area: p;
 }
 
-#post{
+#twit-button{
     grid-area: b;
     padding: 10px;
     background-color: #3498db;
@@ -60,7 +60,7 @@ body{
     margin: 10px;
 }
 
-.delete{
+.delete-post{
     cursor: pointer;
     color: #ecf0f1;
     background-color: #e74c3c;
@@ -68,6 +68,7 @@ body{
     padding: 5px;
     border-radius: 3px;
     font-size: 0.8em;
+    margin-top: 10px;
 }
 
 .delete-comment{
