@@ -15,7 +15,7 @@ const Renderer = function (posts) {
     POSTS_ELEMENT.append(postElenemt);
     for (let comment of post.comments) {
       postElenemt.append(
-        $(`<div class='comments' data-id=${comment.id}'>
+        $(`<div class='comment' data-id=${comment.id}>
 <button class='delete-comment'>X</button>${comment.text}</div>`)
       );
     }
