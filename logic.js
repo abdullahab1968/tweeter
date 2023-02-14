@@ -10,7 +10,6 @@ const Tweeter = function () {
   const addPost = function (text) {
     const post = buildPostObject(text)
     _posts.push(post)
-    _postIdCounter += 1
   }
 
   const removePost = function (postID) {
@@ -19,14 +18,14 @@ const Tweeter = function () {
       return
     }
     _posts.splice(postLocation, 1)
-    _postIdCounter -= 1
+    
 
   }
   const addComment = function (text, postID) {
     const newComment = buildCommentObject(postID, text)
     const postLocation = findPost(postID)
     _posts[postLocation].comments.push(newComment)
-    _commentIdCounter += 1
+    _commentIdCounter++
   }
   const removeComment = function (postID, commentID) {
     const postLocation = findPost(postID)
@@ -39,7 +38,7 @@ const Tweeter = function () {
       return
     }
     comments.splice(commentLocation, 1)
-    _commentIdCounter -= 1
+    
 
 
   }
@@ -48,8 +47,8 @@ const Tweeter = function () {
   function buildPostObject (text) {
     const post = {}
     post['text'] = text
-    const idNumber = _postIdCounter + 1
-    post.id = "p" + idNumber
+
+    post.id = "p" + ++_postIdCounter
     post.comments = []
 
     return post
