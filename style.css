@@ -72,6 +72,8 @@ body{
 }
 
 .delete-comment{
+    display: inline-block;
     cursor: pointer;
     color: #e74c3c;
+    padding-right: 5px;
 }

@@ -1,7 +1,7 @@
 const Tweeter = function () {
   const _posts = []
-  let postIdCounter = 0
-  let commentIdCounter = 0
+  let _postIdCounter = 0
+  let _commentIdCounter = 0
 
   const getPosts = function () {
     return _posts
@@ -10,27 +10,36 @@ const Tweeter = function () {
   const addPost = function (text) {
     const post = buildPostObject(text)
     _posts.push(post)
-    postIdCounter += 1
+    _postIdCounter += 1
   }
 
   const removePost = function (postID) {
     const postLocation = findPost(postID)
+    if(postLocation == -1){
+      return
+    }
     _posts.splice(postLocation, 1)
-    postIdCounter -= 1
+    _postIdCounter -= 1
 
   }
   const addComment = function (text, postID) {
     const newComment = buildCommentObject(postID, text)
     const postLocation = findPost(postID)
     _posts[postLocation].comments.push(newComment)
-    commentIdCounter += 1
+    _commentIdCounter += 1
   }
   const removeComment = function (postID, commentID) {
     const postLocation = findPost(postID)
+    if(postLocation == -1){
+      return
+    }
     const comments = _posts[postLocation].comments
     const commentLocation = findComment(comments, commentID)
+    if(postLocation == -1){
+      return
+    }
     comments.splice(commentLocation, 1)
-    commentIdCounter -= 1
+    _commentIdCounter -= 1
 
 
   }
@@ -39,7 +48,7 @@ const Tweeter = function () {
   function buildPostObject (text) {
     const post = {}
     post['text'] = text
-    const idNumber = postIdCounter + 1
+    const idNumber = _postIdCounter + 1
     post.id = "p" + idNumber
     post.comments = []
 
@@ -51,10 +60,11 @@ const Tweeter = function () {
             return index
         }
     }
+    return -1
   }
   function buildCommentObject(postID, text) {
     const comment = {}
-    const commentNumber = commentIdCounter + 1
+    const commentNumber = _commentIdCounter + 1
     comment.id = 'c' + commentNumber
     comment.text = text
     return comment
@@ -66,6 +76,7 @@ const Tweeter = function () {
             return index
         }
     }
+    return -1
 
   }
   return {
