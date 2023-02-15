@@ -1,7 +1,7 @@
 const POSTS_ELEMENT = $("#posts");
 
-const Renderer = function (posts) {
-  const renderPosts = function () {
+const Renderer = function () {
+  const renderPosts = function (posts) {
     POSTS_ELEMENT.empty();
     for (let post of posts) {
       addPostElements(post);
@@ -16,13 +16,15 @@ const Renderer = function (posts) {
     for (let comment of post.comments) {
       postElenemt.append(
         $(`<div class='comment' data-id=${comment.id}>
-          <div class='delete-comment'>X</div>${comment.text}</div>`)
+          <div class='delete-comment'>X</div>${comment.text}</div>
+          `)
       );
     }
     postElenemt.append(
-      $(
-        "<div class='add-comment'><input type='text' placeholder='Got something to say' class='comment-input'><button class='comment-button'>Comment</button><br></div>"
-      )
+      $(`
+      <div class='add-comment'><input type='text' placeholder='Got something to say' 
+        class='comment-input'><button class='comment-button'>Comment</button><br></div>
+        `)
     );
     postElenemt.append($("<button class='delete-post'>Delete Post</button>"));
   }

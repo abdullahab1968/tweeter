@@ -1,6 +1,6 @@
 const tweeter = Tweeter();
 
-const renderer = Renderer(tweeter.getPosts());
+const renderer = Renderer();
 
 $("#twit-button").on("click", function () {
   const postInput = $("#post-input");
@@ -8,13 +8,13 @@ $("#twit-button").on("click", function () {
     return
   }
   tweeter.addPost(postInput.val());
-  renderer.renderPosts();
+  renderer.renderPosts(tweeter.getPosts());
   postInput.val("");
 });
 
 POSTS_ELEMENT.on("click", ".delete-post", function () {
   tweeter.removePost($(this).closest(".post").data().id);
-  renderer.renderPosts();
+  renderer.renderPosts(tweeter.getPosts());
 });
 
 POSTS_ELEMENT.on("click", ".comment-button", function(){
@@ -24,13 +24,13 @@ POSTS_ELEMENT.on("click", ".comment-button", function(){
         return
     }
     tweeter.addComment(comment, postID)
-    renderer.renderPosts()
+    renderer.renderPosts(tweeter.getPosts())
 })
 POSTS_ELEMENT.on("click", ".delete-comment", function(){
     const postID = $(this).closest('.post').data().id
     const commentID = $(this).closest('.comment').data().id
     tweeter.removeComment(postID, commentID)
-    renderer.renderPosts()
+    renderer.renderPosts(tweeter.getPosts())
 })
 
 
